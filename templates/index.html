@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>数学プログラム実行アプリケーション</title>
+</head>
+<body>
+    <h1>数学プログラム実行アプリケーション</h1>
+    
+    <!-- プルダウンメニューとユーザー入力フォーム -->
+    <form method="POST">
+        <label for="program_select">プログラムを選択:</label>
+        <select name="program_select" id="program_select">
+            {% for key, value in program_choices.items() %}
+            <option value="{{ key }}" {% if key == selected_program %}selected{% endif %}>{{ value }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <label for="user_input">ユーザー入力:</label>
+        <input type="text" name="user_input" id="user_input" value="{{ user_input }}">
+        <br>
+        <input type="submit" value="実行">
+    </form>
+    
+    <!-- 選択されたプログラムの実行結果を表示 -->
+    <div id="result">
+        {% if result %}
+        <h2>実行結果:</h2>
+        <p>{{ result }}</p>
+        {% endif %}
+    </div>
+
+
+    <script>
+
+        let placeholder_dict = {
+            'fibo'        : '出力項数を入力', // フィボナッチ数列
+            'is_prime'    : '13',           // 素数判定
+            'primes'      : '100',          // 素数列挙
+            'collatz'     : '27',           // コラッツ予想
+            // 'register' : 'apple',        // 英単語登録
+            'day_of_week' : '2023/01/01',   // 曜日計算
+        }
+
+        
+        // プログラム選択時にユーザー入力フォームのplaceholderを変更
+        // 初期設定
+        const programSelect = document.getElementById('program_select');
+        const userInput = document.getElementById('user_input');
+        userInput.value = '';
+        userInput.setAttribute("placeholder", placeholder_dict[programSelect.value]);
+
+        // プログラム選択時にユーザー入力フォームのplaceholderを変更
+        programSelect.addEventListener('change', function(){
+
+            // valueを初期化する
+            userInput.value = '';
+            userInput.placeholder = placeholder_dict[programSelect.value];
+            userInput.setAttribute("placeholder", placeholder_dict[programSelect.value]);
+
+        });
+
+    </script>
+</body>
+</html>
