@@ -1,14 +1,11 @@
 
-# 必須
-- 課題提出時にフォルダを送れないため、フォルダ直下に「templates」フォルダを作り、その中にindex.htmlを入れて下さい。
-- 提出時にファイルの名前が変わっていると思うので、"ファイル構成"を参考に名前を変えてください。
-- ファイル構成は、のちほど記載します。
 
 # 環境準備
 ## ライブラリのインストール
-pip install flask   
-conda install flask
-
+```bash
+$ pip install flask   
+$ conda install flask
+```
 
 ## 環境
 - Python 3.10.8
